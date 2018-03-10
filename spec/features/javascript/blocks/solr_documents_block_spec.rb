@@ -131,11 +131,9 @@ feature 'Solr Document Block', feature: true, versioning: true do
     fill_in_typeahead_field with: 'gk446cj2442'
 
     check 'zpr_link'
-
     save_page
 
-    expect(page).to have_selector('.zpr-link[data-iiif-tilesource]', visible: true)
-    click_on 'Show in ZPR viewer'
+    find('.zpr-link[data-iiif-tilesource]').click
     expect(page).to have_css('#osd-modal-container', visible: true)
   end
 
@@ -167,7 +165,8 @@ feature 'Solr Document Block', feature: true, versioning: true do
     # verify that the item + image widget is displaying image and title from the requested document.
     within(:css, '.items-block', visible: true) do
       expect(page).to have_content 'zzz'
-      expect(page).to have_css('.items-col.pull-left', visible: true)
+      find('.items-col.pull-left')
+      expect(page).to have_css('.items-col.pull-left')
       expect(page).to have_css('.text-col')
     end
   end
