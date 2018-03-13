@@ -120,6 +120,8 @@ Spotlight::Engine.routes.draw do
       end
     end
     post 'solr/update' => 'solr#update'
+    resources :translations, only: [:index] do
+    end
   end
 
   get '/:exhibit_id' => 'home_pages#show', as: :exhibit_root
